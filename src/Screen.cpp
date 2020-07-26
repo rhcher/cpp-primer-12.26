@@ -1,5 +1,4 @@
 #include "Screen.hpp"
-#include <iostream>
 using namespace std;
 
 void Window_mgr::clear(ScreenIndex index)

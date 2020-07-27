@@ -27,21 +27,21 @@ void Foo(list<int>& lst)
 	cout << endl;
 }
 
-void Function(forward_list<int>& flst)
+void Foo(forward_list<int>& flst)
 {
-	auto iter = flst.begin();
+	auto curr = flst.begin();
 	auto prev = flst.before_begin();
-	while (iter != flst.end())
+	while (curr != flst.end())
 	{
-		if (*iter % 2 == 0)
+		if (*curr % 2 == 0)
 		{
-			iter = flst.insert_after(iter, *iter);
-			prev = iter;
-			++iter;
+			curr = flst.insert_after(curr, *curr);
+			prev = curr;
+			++curr;
 		}
 		else
 		{
-			iter = flst.erase_after(prev);
+			curr = flst.erase_after(prev);
 		}
 	}
 	for (auto item : flst)
@@ -56,6 +56,6 @@ int main(int argc, char* argv[])
 	list<int> lst{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 	forward_list<int> flst{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 	Foo(lst);
-	Function(flst);
+	Foo(flst);
 	return 0;
 }

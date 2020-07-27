@@ -1,31 +1,61 @@
 #include <forward_list>
 #include <iostream>
+#include <list>
 #include <vector>
 using namespace std;
 
-void find_to_delete(forward_list<string>& flst, const string& s1, const string& s2)
+void Foo(list<int>& lst)
 {
-	[[maybe_unused]] auto prev = flst.cbefore_begin();
-	auto curr = flst.begin();
-
-	while (curr != flst.end())
+	auto iter = lst.begin();
+	while (iter != lst.end())
 	{
-		if ((*curr) == s1)
+		if ((*iter) % 2 == 0)
 		{
-			flst.insert_after(curr, s2);
-			break;
+			iter = lst.insert(iter, *iter);
+			++iter;
+			++iter;
 		}
 		else
 		{
-			++curr;
+			iter = lst.erase(iter);
 		}
 	}
+	for (auto item : lst)
+	{
+		cout << item << " ";
+	}
+	cout << endl;
+}
+
+void Function(forward_list<int>& flst)
+{
+	auto iter = flst.begin();
+	auto prev = flst.before_begin();
+	while (iter != flst.end())
+	{
+		if (*iter % 2 == 0)
+		{
+			iter = flst.insert_after(iter, *iter);
+			prev = iter;
+			++iter;
+		}
+		else
+		{
+			iter = flst.erase_after(prev);
+		}
+	}
+	for (auto item : flst)
+	{
+		cout << item << " ";
+	}
+	cout << endl;
 }
 
 int main(int argc, char* argv[])
 {
-	if (argc == 2)
-	{
-		cout << "helloworld";
-	}
+	list<int> lst{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+	forward_list<int> flst{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+	Foo(lst);
+	Function(flst);
+	return 0;
 }

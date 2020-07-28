@@ -4,21 +4,34 @@
 #include <vector>
 using namespace std;
 
+void Old_to_New(string& s, const string& oldVal, const string& newVal)
+{
+	cout << "Old string is : " << s << endl;
+	for (auto iter = s.cbegin(); iter != s.cend() - oldVal.size() + 1; ++iter)
+	{
+		if (*iter == *oldVal.begin())
+		{
+			auto olditer = oldVal.begin();
+			for (auto itertmp = iter; olditer != oldVal.end(); ++itertmp, ++olditer)
+			{
+				if (*itertmp != *olditer)
+					break;
+			}
+			if (olditer == oldVal.end())
+			{
+				string::size_type pos = iter - s.cbegin();
+				s.erase(iter, iter + oldVal.size());
+				s.insert(pos, newVal);
+				iter = s.cbegin() + pos + newVal.size();
+			}
+		}
+	}
+	cout << "new string is : " << s << endl;
+}
+
 int main(int argc, char* argv[])
 {
-	vector<int> ivec;
-	cout << "ivec: size: " << ivec.size() << endl;
-	cout << "      capacity: " << ivec.capacity() << endl;
-	for (vector<int>::size_type ix = 0; ix != 24; ++ix)
-	{
-	ivec.push_back(ix);
-	}
-	cout << "ivec: size: " << ivec.size() << endl;
-	cout << "      capacity: " << ivec.capacity() << endl;
-	cout << "ivec : " << endl;
-	for (auto item : ivec)
-	{
-		cout << item << " ";
-	}
-	return 0;
+	string s{"qthwepthoriurtythrasdfglkthrujhzxcvb"};
+	Old_to_New(s, "tho", "though");
+	Old_to_New(s, "thru", "through");
 }

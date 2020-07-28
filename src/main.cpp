@@ -1,37 +1,52 @@
-#include <forward_list>
 #include <iostream>
-#include <list>
+#include <string>
 #include <vector>
 using namespace std;
 
-void Old_to_New(string& s, const string& oldVal, const string& newVal)
+void Foo(string& s, const string& asc, const string& desc)
 {
-	cout << "Old string is : " << s << endl;
-	for (auto iter = s.cbegin(); iter != s.cend() - oldVal.size() + 1; ++iter)
+	string::difference_type diff = 0;
+	string::size_type ascpos = 0;
+	string::size_type descpos = 0;
+	vector<string> result{};
+
+	while ((ascpos = s.find_first_of(asc, ascpos)) != string::npos && (descpos = s.find_first_of(desc, descpos)) != string::npos)
 	{
-		if (*iter == *oldVal.begin())
+		if (ascpos < descpos)
 		{
-			auto olditer = oldVal.begin();
-			for (auto itertmp = iter; olditer != oldVal.end(); ++itertmp, ++olditer)
+			result.push_back(s.substr(ascpos+1, descpos-1));
+		}
+		else
+		{
+			result.push_back(s.substr(descpos+1, ascpos-1));
+		}
+		++ascpos;
+		++descpos;
+	}
+
+	for (auto i = result.cbegin(); i != result.cend(); ++i)
+	{
+		size_t max = (*i).size();
+		for (auto iter = i + 1; iter != result.cend();)
+		{
+			if (max < (*iter).size())
 			{
-				if (*itertmp != *olditer)
-					break;
+				result.insert(result.cbegin(), *iter);
+				iter = result.erase(iter);
 			}
-			if (olditer == oldVal.end())
-			{
-				string::size_type pos = iter - s.cbegin();
-				s.erase(iter, iter + oldVal.size());
-				s.insert(pos, newVal);
-				iter = s.cbegin() + pos + newVal.size();
-			}
+			++iter;
 		}
 	}
-	cout << "new string is : " << s << endl;
+
+	cout << "the result is : " <<result.at(0)<<endl;
 }
 
 int main(int argc, char* argv[])
 {
-	string s{"qthwepthoriurtythrasdfglkthrujhzxcvb"};
-	Old_to_New(s, "tho", "though");
-	Old_to_New(s, "thru", "through");
+	string ascender{"bdfhklt"};
+	string descender{"gjpqy"};
+	string s{};
+	cout << "Please input a string : " << endl;
+	cin >> s;
+	Foo(s, ascender, descender);
 }

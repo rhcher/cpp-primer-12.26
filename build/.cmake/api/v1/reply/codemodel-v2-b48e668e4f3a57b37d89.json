@@ -14,8 +14,7 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0,
-						1
+						0
 					]
 				}
 			],
@@ -30,8 +29,7 @@
 					"name" : "cpp_test",
 					"targetIndexes" : 
 					[
-						0,
-						1
+						0
 					]
 				}
 			],
@@ -39,15 +37,8 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "Sales_data::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Sales_data-Debug-a19551cfe4f66a81fe6e.json",
-					"name" : "Sales_data",
-					"projectIndex" : 0
-				},
-				{
-					"directoryIndex" : 0,
 					"id" : "main::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-main-Debug-2c2da83123c850580e04.json",
+					"jsonFile" : "target-main-Debug-9934027b17a2346d937c.json",
 					"name" : "main",
 					"projectIndex" : 0
 				}

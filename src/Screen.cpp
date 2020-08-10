@@ -32,3 +32,17 @@ string StrBlob::back()
 	check(0, "back on empty StrBlob");
 	return data->back();
 }
+
+shared_ptr<vector<string>> StrBlobPtr::check(size_t i, const string& msg) const
+{
+	auto ret = wptr.lock();
+	if (!ret)
+	{
+		throw runtime_error("unbound StrBlobPtr");
+	}
+	if (i >= ret->size())
+	{
+		throw out_of_range(msg);
+	}
+	return ret;
+}

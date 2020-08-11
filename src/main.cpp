@@ -1,3 +1,10 @@
+/*
+ * @Author: skynine
+ * @Date: 2020-07-27 19:19:56
+ * @LastEditors: skynine
+ * @LastEditTime: 2020-08-11 13:38:17
+ * @Description: file content
+ */
 #include <algorithm>
 #include <fstream>
 #include <functional>
@@ -6,11 +13,11 @@
 #include <iterator>
 #include <list>
 #include <map>
+#include <memory>
 #include <set>
 #include <sstream>
 #include <utility>
 #include <vector>
-#include <memory>
 using namespace std;
 using ivec = shared_ptr<vector<int>>;
 
@@ -39,13 +46,13 @@ void print()
 
 void process(shared_ptr<int> ptr)
 {
-
 }
 
 int main(int argc, char* argv[])
 {
+	print();
 	shared_ptr<int> sp(new int(4));
 	weak_ptr<int> wp(sp);
-	cout <<  wp.use_count() <<endl;
+	cout << wp.use_count() << endl;
 	return 0;
 }

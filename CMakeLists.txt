@@ -12,6 +12,6 @@ target_sources(main PUBLIC ${PROJECT_SOURCE_DIR}/src/main.cpp)
 target_link_libraries(main Sales_data)
 target_include_directories(main PUBLIC ${PROJECT_SOURCE_DIR}/include)
 target_compile_features(main PUBLIC cxx_std_17)
-target_compile_options(main PUBLIC "-D_GLIBCXX_DEBUG")
+target_compile_options(main PUBLIC "-g")
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

@@ -63,10 +63,14 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : " "
+					"fragment" : "-g  "
 				},
 				{
 					"backtrace" : 3,
+					"fragment" : "-g"
+				},
+				{
+					"backtrace" : 2,
 					"fragment" : "-D_GLIBCXX_DEBUG"
 				},
 				{
@@ -99,6 +103,10 @@
 	{
 		"commandFragments" : 
 		[
+			{
+				"fragment" : "-g",
+				"role" : "flags"
+			},
 			{
 				"fragment" : "",
 				"role" : "flags"
